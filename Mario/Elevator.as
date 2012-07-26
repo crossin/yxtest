@@ -15,7 +15,8 @@ package
 			width = 48;			//Minor bounding box adjustment
 			_y = Y;				//The starting height
 			_height = Height;	//How far down to travel
-			fixed = true;		//We want the elevator to be "solid" and not shift during collisions
+			//fixed = true;		//We want the elevator to be "solid" and not shift during collisions
+			moves = false;
 			velocity.y = 40;	//Basic elevator speed
 		}
 		
