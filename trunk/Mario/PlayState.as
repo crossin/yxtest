@@ -20,7 +20,7 @@ package
 		override public function create():void
 		{
 			//Background
-			FlxState.bgColor = 0xffacbcd7;
+			//FlxState.bgColor = 0xffacbcd7;
 			var decoration:FlxSprite = new FlxSprite(256,159,ImgBG);
 			decoration.moves = false;
 			decoration.solid = false;
@@ -56,15 +56,14 @@ package
 			//t.follow();
 			//add(t);
 			
-			level1 = new Level_level1(true,onSpriteAddedCallback);
+			level1 = new Level_Group1(true,onObjectAddedCallback);
 			
 			focus = new FlxSprite(100, 80);
 			//focus.visible = false;
 			add(focus);
 			
-			FlxG.follow(focus, 50);
-			FlxG.followBounds(0, 10, 1640, 480);
-			
+			FlxG.camera.follow(focus, 50);
+			FlxG.camera.bounds = new FlxRect(0, 10, 1640, 480);
 			
 			//Instructions and stuff
 			_fps = new FlxText(FlxG.width-40,0,40).setFormat(null,8,0x778ea1,"right",0x233e58);
@@ -81,6 +80,9 @@ package
 			tx.color = 0x778ea1;
 			tx.shadow = 0x233e58;
 			add(tx);
+			
+			FlxG.bgColor = 0xff233e58;
+			
 		}
 		
 		override public function update():void
@@ -98,10 +100,10 @@ package
 			
 			
 			super.update();
-			collide();
+			FlxG.collide();
 			//FlxU.collide(_player,level1.masterLayer);
 			
-			FlxU.overlap(_elevator,_player,overlapped);
+			//FlxU.overlap(_elevator,_player,overlapped);
 			//if(FlxG.keys.justReleased("ENTER"))
 				//FlxG.state = new PlayState2();
 		}
@@ -111,11 +113,12 @@ package
 			trace("hit");
 		}
 		
-		protected function onSpriteAddedCallback(sprite:FlxSprite, group:FlxGroup):void
+		protected function onObjectAddedCallback(obj:Object, layer:FlxGroup, level:BaseLevel, scrollX:Number, scrollY:Number, properties:Array):Object
 		{
-			trace(sprite);
-			trace(group);
+			trace(obj);
+			trace(layer);
 			trace("=================");
+			return obj;
 		}
 	}
 }
