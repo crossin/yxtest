@@ -7,5 +7,5 @@ function Start () {
 }
 
 function Update () {
-transform.Rotate(Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * speed);
+transform.Rotate(Vector3(0, 0, Input.GetAxis("Mouse X")) * Time.deltaTime * speed);
 }
