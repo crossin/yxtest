@@ -1,7 +1,7 @@
 #pragma strict
 //创建填弹时间变量
 var waitFire:int;
-
+var gui:GameObject;
 
 function Start () {
 waitFire = Time.time;
@@ -48,9 +48,19 @@ openFireSwith=false;
 
 }
 
+var shotTimeG:GameObject;
+
+
 //从开火之时算起，四秒钟之后再一次允许开火
 if(Time.time > (waitFire+4)){
 openFireSwith=true;
+}
+else{
+//计算等待时间的大小，并折算成百分数赋给shotTimeG的静态变量shotTime
+reload.shotTime = Mathf.Round((Time.time-waitFire)*25);
+//计算等待时间的大小，并折算成百分比赋给zouGUI的文字参数。
+gui.guiText.text=Mathf.Round((Time.time-waitFire)*25)+"%";
+
 }
 
 }
